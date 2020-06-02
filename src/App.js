@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {connect} from 'react-redux';
 
-function App() {
+import {openProfile} from "./store";
+import Modal from './Modal';
+
+const App = ({showProfile}) => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => showProfile()}>Show Profile</button>
+      <Modal />
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  showProfile: (id) => dispatch(openProfile(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
